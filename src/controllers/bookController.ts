@@ -2,11 +2,49 @@ import { Request, Response } from 'express';
 import { BookModel } from '../models/bookModel';
 import { CreateBookRequest, UpdateBookRequest } from '../types/bookType';
 import mongoose from 'mongoose';
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Book:
+ *       type: object
+ *       required:
+ *         - user_id
+ *         - code
+ *         - title
+ *         - author
+ *         - description
+ *       properties:
+ *         user_id:
+ *           type: string
+ *           description: ID pengguna yang menambahkan buku
+ *         code:
+ *           type: string
+ *           description: Kode unik untuk buku
+ *         title:
+ *           type: string
+ *           description: Judul buku
+ *         author:
+ *           type: string
+ *           description: Penulis buku
+ *         description:
+ *           type: string
+ *           description: Deskripsi singkat tentang buku
+ *       example:
+ *         user_id: "60d21b4667d0d8992e610c85"
+ *         code: "B001"
+ *         title: "Pemrograman TypeScript"
+ *         author: "John Doe"
+ *         description: "Panduan lengkap pemrograman TypeScript untuk pemula."
+ */
+
 /**
  * @swagger
  * /api/books:
  *   post:
  *     summary: Menambahkan buku baru
+ *     tags: [Buku]
  *     description: |
  *       Untuk mengakses endpoint ini, Anda perlu mengirimkan token JWT di header Authorization.
  *       Format: `Authorization: Bearer <token>`
@@ -85,6 +123,7 @@ export const createBookController = async (
  * /api/books:
  *   get:
  *     summary: Mendapatkan semua buku
+ *     tags: [Buku]
  *     security:
  *       - bearerAuth: []
  *     responses:
@@ -111,6 +150,7 @@ export const getAllBooksController = async (req: Request, res: Response) => {
  * /api/books/{id}:
  *   get:
  *     summary: Mendapatkan buku berdasarkan ID
+ *     tags: [Buku]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -151,6 +191,7 @@ export const getBookController = async (req: Request, res: Response) => {
  * /api/books/{id}:
  *   patch:
  *     summary: Memperbarui buku berdasarkan ID
+ *     tags: [Buku]
  *     parameters:
  *       - in: path
  *         name: id
@@ -211,6 +252,7 @@ export const updateBookController = async (req: Request, res: Response) => {
  * /api/books/{id}:
  *   delete:
  *     summary: Menghapus buku berdasarkan ID
+ *     tags: [Buku]
  *     security:
  *       - bearerAuth: []
  *     parameters:
