@@ -27,7 +27,7 @@ npm test -- src/__test__/user.book.ts // untuk running file book
 2. Running file User
    ![Screenshot 2024-11-04 142236](https://github.com/user-attachments/assets/0d047876-9a79-4316-b746-724d4378d2a8)
 
-3. Runninf file Book
+3. Running file Book
    ![Screenshot 2024-11-04 142324](https://github.com/user-attachments/assets/6329b579-bfb9-40c9-9c7d-e7fe2f735dfb)
 
 
