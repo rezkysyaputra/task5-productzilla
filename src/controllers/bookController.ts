@@ -83,7 +83,6 @@ export const createBookController = async (
   res: Response
 ): Promise<void> => {
   const userId = (req as any).user._id;
-  console.log(userId);
 
   const { code, title, author, description } = req.body as CreateBookRequest;
   if (!code || !title || !author || !description) {
@@ -226,6 +225,17 @@ export const updateBookController = async (req: Request, res: Response) => {
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     res.status(404).json({ message: 'Buku tidak ditemukan' });
+    return;
+  }
+
+  const book = await BookModel.findById(id);
+  if (!book) {
+    res.status(404).json({ message: 'Buku tidak ditemukan' });
+    return;
+  }
+
+  if (!data.code || !data.title || !data.author || !data.description) {
+    res.status(400).json({ message: 'Request tidak valid' });
     return;
   }
 

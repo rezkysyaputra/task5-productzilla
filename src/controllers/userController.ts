@@ -57,6 +57,12 @@ import jwt from 'jsonwebtoken';
  */
 export const loginController = async (req: Request, res: Response) => {
   const { username, password } = req.body as RequestUserLogin;
+
+  if (!username || !password) {
+    res.status(400).json({ message: 'Request tidak valid' });
+    return;
+  }
+
   try {
     const user = await UserModel.findOne({ username, password });
     if (!user) {
